@@ -33,6 +33,7 @@ Modi_Main = {
 		Modi_AdminCountry = yes #TBD
 		Modi_CorruptionCountry = yes
 		Modi_AutonomyCountry = yes #TBD
+		Modi_StateProperty = yes						  
 		Modi_EliteLoyaltyCountry = yes
 		Modi_ElitePowerCountry = yes
 		Modi_ElitePromotionDemotion = yes
@@ -85,6 +86,7 @@ Modi_Country = {
 	Modi_AdminCountry = yes #TBD
 	Modi_CorruptionCountry = yes
 	Modi_AutonomyCountry = yes #TBD
+	Modi_StateProperty = yes						 
 	Modi_EliteLoyaltyCountry = yes
 	Modi_ElitePowerCountry = yes
 	Modi_ElitePromotionDemotion = yes
@@ -296,6 +298,9 @@ Modi_TradeCountry = {
 		}
 		novgorodian_ideas_5 = {
 			change_key = { lhs = Modi_TradeScoreExternal value = 0.15 }
+		}
+		mapuche_ideas_1 = {
+			change_key = { lhs = Modi_TradeScoreExternal value = 0.1 }
 		}
 	}
 	if = {
@@ -514,12 +519,28 @@ Modi_MilCountry = {
 			change_key = { lhs = Modi_MilBGCost value = -0.15 }
 		}
 	}
+
+	if = {
+		limit = {
+			has_idea = aristocracy_ideas_3
+		}
+		change_key = { lhs = Modi_MilNOBudget value = 0.3 } #Up to 100% NOBudget with Extended Levies and Quantity Ideas assuming high rural governance
+		if = {
+			limit = {
+				has_idea = aristocracy_ideas_6
+			}
+			change_key = { lhs = Modi_Manpower value = 0.05 }
+		}
+	}
+
+	
 	if = {
 		limit = {
 			Rights_NOObl2Has = yes
 		}
 		change_key = { lhs = Modi_MilNOBudget value = 0.15 }
 	}
+
 	else_if = {
 		limit = {
 			Rights_NOObl1Has = yes
@@ -725,6 +746,9 @@ Modi_MilCountry = {
 		}
 		restrict_serfdom = {
 			subtract_key = { lhs = Modi_Manpower value = -0.25 }
+		}
+		french_last_stand = {
+			change_key = { lhs = Modi_Manpower value = 0.15 }
 		}
 	}
 	
@@ -1208,6 +1232,16 @@ Modi_MilProvince = {
 				change_key = { lhs = Modi_Manpower value = 0.1 }
 			}
 		}
+		mapuche = { 
+			if = {
+				limit = {
+					owner = {
+						has_idea = mapuche_ideas_5
+					}
+				}
+				change_key = { lhs = Modi_Manpower value = 0.1 }
+			}
+		}
 	}
 }
 
@@ -1248,6 +1282,31 @@ Modi_GrowthCountry = {
 		}
 		subtract_key = { lhs = Modi_PressureMultiRE value = 0.01 }
 	}
+	if = {
+		limit = {
+			owner = {
+				has_idea = aristocracy_ideas_1
+			}	
+		}
+		change_key = { lhs = Modi_SFDemand value = -0.05 }
+	}
+	if = {
+		limit = {
+			owner = {
+				has_idea = agrarian_ideas_1
+				}	
+		}
+		change_key = { lhs = Modi_SFDemand value = -0.05 }
+		if = {
+			limit = {
+				owner = {
+					has_idea = agrarian_ideas_5
+				}	
+			}
+			change_key = { lhs = Modi_Birth value = 0.01 }
+		}
+	}
+	
 	
 	trigger_switch = {
 		on_trigger = has_idea
@@ -1279,7 +1338,7 @@ Modi_GrowthCountry = {
 		sukhothai_ideas_3 = {
 			subtract_key = { lhs = Modi_PressureMultiSF value = 0.05 }
 		}
-		genoese_ideas_2 =  {
+		genoese_ideas_2 = {
 			subtract_key = { lhs = Modi_PressureMultiBG value = 0.05 }
 		}
 		lao_ideas_3 = {
@@ -1372,7 +1431,14 @@ Modi_GrowthProvince = {
 		}
 		subtract_key = { lhs = Modi_PressureMultiRE value = 0.05 }
 	}
-	
+	if = {
+		limit = {
+			owner = {
+			has_idea = agrarian_ideas_5
+			}	
+		}
+		change_key = { lhs = Modi_Birth value = 0.01 }
+	}
 	# Replaced by SYS-Promotion
 	#if = { # nomads get settled by state reach
     #    limit = {
@@ -1578,6 +1644,7 @@ Modi_ProdCountry = {
 	set_key = { lhs = Modi_BGLabor value = 1 }
 	set_key = { lhs = Modi_NOLabor value = 1 }
 	set_key = { lhs = Modi_CLLabor value = 1 }
+	set_key = { lhs = Modi_LTLabor value = 1 }
 	set_key = { lhs = Modi_Prod1 value = 1 }	# Food
 	set_key = { lhs = Modi_Prod2 value = 1 }	# Salt
 	set_key = { lhs = Modi_Prod4 value = 1 }	# Fiber
@@ -1710,6 +1777,40 @@ Modi_ProdCountry = {
 		}
 		change_key = { lhs = Modi_EducationSkill value = 0.15 }
 	}
+	if = {
+		limit = {
+			has_idea = aristocracy_ideas_1
+		}
+		change_key = { lhs = Modi_AgricultureSkill value = 0.05 }
+		change_key = { lhs = Modi_HerdingSkill value = 0.05 }
+		if = {
+			limit = {
+				has_idea = aristocracy_ideas_2
+			}
+			change_key = { lhs = Modi_MetalworkingSkill value = 0.05 }
+			change_key = { lhs = Modi_WoodworkingSkill value = 0.05 }
+		}
+	}
+	
+	if = {
+		limit = {
+			has_idea = agrarian_ideas_1
+		}
+		change_key = { lhs = Modi_AgricultureSkill value = 0.15 }
+		if = {
+			limit = {
+				has_idea = agrarian_ideas_2
+			}
+			change_key = { lhs = Modi_PastureOutput value = 0.05 }
+		}
+		if = {
+			limit = {
+				has_idea = agrarian_ideas_3
+			}
+			change_key = { lhs = Modi_WoodworkingSkill value = 0.1 }
+		}
+	}
+	
 	trigger_switch = {
 		on_trigger = has_idea
 		children_of_corn_idea = { #Unof_Traveller
@@ -2171,6 +2272,18 @@ Modi_ProdCountry = {
 		monic_ideas_7 = {
 			change_key = { lhs = Modi_EducationSkill value = 0.20 }
 		}
+		mapuche_ideas_1 = {
+			change_key = { lhs = Modi_WeavingSkill value = 0.15 }
+			change_key = { lhs = Modi_FashionSkill value = 0.15 }
+		}
+		mapuche_ideas_4 = {
+			change_key = { lhs = Modi_AgricultureSkill value = 0.1 }
+			change_key = { lhs = Modi_MiningSkill value = 0.1 }
+			change_key = { lhs = Modi_MetalworkingSkill value = 0.1 }
+		}
+		burmese_ideas_7 = {
+			change_key = { lhs = Modi_EducationSkill value = 0.20 }
+		}
 	}
 	if = {
 		limit = {
@@ -2275,6 +2388,7 @@ Modi_ProdProvince = {
 	set_key = { lhs = Modi_BGLabor which = owner }
 	set_key = { lhs = Modi_NOLabor which = owner }
 	set_key = { lhs = Modi_CLLabor which = owner }
+	set_key = { lhs = Modi_LTLabor which = owner }
 	set_key = { lhs = Modi_Prod1 which = owner }   # Food
 	set_key = { lhs = Modi_Prod2 which = owner }   # Salt
 	set_key = { lhs = Modi_Prod4 which = owner }   # Fiber
@@ -3033,6 +3147,7 @@ Modi_BuildingCountry = {
 # Modi_$type$Cost: Impacts the amount of labor and tradegood a given type of property requires for its construction and therefore its cost in a given province
 # Modi_BuildingCost: Impacts the amount of tradegood required for construction and therefore its cost for all construction projects in a given province
 # Modi_BuildingTime: Impacts the amount of labor required for construction and therefore its cost for all construction projects in a given province
+# Modi_StateProperty$type$: Impacts the contribution of each property type to the StatePropertyCap 
 Modi_BuildingProvince = {
 	set_key = { lhs = Modi_AgricultureMax which = owner }
 	set_key = { lhs = Modi_FisheryMax which = owner }
@@ -3045,7 +3160,13 @@ Modi_BuildingProvince = {
 	set_key = { lhs = Modi_IndustrialCost which = owner }
 	set_key = { lhs = Modi_CommercialCost which = owner }
 	set_key = { lhs = Modi_AcademicCost which = owner }
-	
+	set_key = { lhs = Modi_StatePropertyAgriculture which = owner }
+	set_key = { lhs = Modi_StatePropertyForestry which = owner }
+	set_key = { lhs = Modi_StatePropertyExtraction which = owner }
+	set_key = { lhs = Modi_StatePropertyFishery which = owner }
+	set_key = { lhs = Modi_StatePropertyIndustrial which = owner }
+	set_key = { lhs = Modi_StatePropertyCommercial which = owner }
+	set_key = { lhs = Modi_StatePropertyAcademic which = owner }
 	export_to_key = { lhs = Modi_ResourceSizeIneffic value = modifier:local_development_cost }
 	export_to_key = { lhs = Modi_BuildingCost value = modifier:local_build_cost }
 	export_to_key = { lhs = Modi_BuildingTime value = modifier:local_build_time }
@@ -3908,6 +4029,17 @@ Modi_InfraMaintenanceCountry = {
 		khmer_ideas_1 = {
 			subtract_key = { lhs = Modi_IrrigationBuild value = 0.1 }
 		}
+		mapuche_ideas_3 = {
+			subtract_key = { lhs = Modi_GarrisonMaint value = 0.1 }
+			subtract_key = { lhs = Modi_GarrisonBuild value = 0.1 }
+		}
+		mapuche_ideas_4 = {
+			subtract_key = { lhs = Modi_IrrigationMaint value = 0.2 }
+			subtract_key = { lhs = Modi_IrrigationBuild value = 0.2 }
+		}
+		burmese_ideas_1 = {
+			subtract_key = { lhs = Modi_CapitolMaint value = 0.10 }
+		}
 	}
 }
 
@@ -4270,6 +4402,10 @@ Modi_ExecutiveAuthorityCountry = {
 			change_key = { lhs = Modi_RulerPower value = 10 }
 			subtract_key = { lhs = Modi_InstitutionalPower value = 10 }
 		}
+		burmese_ideas_6 = {
+			change_key = { lhs = Modi_RulerPower value = 5 }
+			subtract_key = { lhs = Modi_InstitutionalPower value = 5 }
+		}
 	}
 	trigger_switch = {
 		on_trigger = has_reform
@@ -4307,12 +4443,6 @@ Modi_AdminCountry = {
         }
         subtract_key = { lhs = Modi_AdminCostMulti value = 0.1 }
     }
-	if = {
-		limit = {
-			has_idea = aristocracy_ideas_3
-		}
-		change_key = { lhs = Modi_WagesGainNO value = 0.1 }
-	}
 	trigger_switch = {
 		on_trigger = has_idea
 		egyptian_ideas_6 = {
@@ -4514,6 +4644,12 @@ Modi_CorruptionCountry = {
             has_idea = administrative_ideas_7
         }
         subtract_key = { lhs = Modi_CorruptionLA value = 0.10 }
+    }
+    if = { 
+		limit = {
+			has_idea = aristocracy_ideas_7
+		}
+		change_key = { lhs = Modi_CorruptionNO value = 0.05 }
     }
     if = {
         limit = {
@@ -4774,6 +4910,9 @@ Modi_CorruptionCountry = {
 		morrocan_fez_ideas_1 = {
 			subtract_key = { lhs = Modi_CorruptionLA value = 0.10 }
 		}
+		mapuche_ideas_2 = {
+			subtract_key = { lhs = Modi_CorruptionElites value = 0.2 }
+		}
 	}
 	trigger_switch = {
 		on_trigger = has_country_modifier
@@ -4801,6 +4940,13 @@ Modi_CorruptionCountry = {
 			has_idea = empire_ideas_7
 		}
 		subtract_key = { lhs = Modi_CorruptionLA value = 0.05 }
+	}
+	if = {
+		limit = {
+			has_idea = aristocracy_ideas_7
+		}
+		subtract_key = { lhs = Modi_CorruptionElites value = 0.05 }
+		change_key = { lhs = Modi_WagesGainNO value = 0.1 }
 	}
 }
 
@@ -5254,6 +5400,256 @@ Modi_AutonomyProvince = {
 		}
 	}
 }
+Modi_StateProperty = {
+	set_key = { lhs = Modi_StatePropertyFlat value = 0 }
+	set_key = { lhs = Modi_StatePropertyPerc value = 1 }
+	set_key = { lhs = Modi_StatePropertyAgriculture value = 1 }
+	set_key = { lhs = Modi_StatePropertyForestry value = 1 }
+	set_key = { lhs = Modi_StatePropertyExtraction value = 1 }
+	set_key = { lhs = Modi_StatePropertyFishery value = 1 }
+	set_key = { lhs = Modi_StatePropertyIndustrial value = 1 }
+	set_key = { lhs = Modi_StatePropertyCommercial value = 1 }
+	set_key = { lhs = Modi_StatePropertyAcademic value = 1 }
+	
+	set_key = { lhs = Modi_Tmp0 value = 0 }
+	set_key = { lhs = Modi_Tmp1 value = 1 }
+	
+	if = {
+		limit = {
+			has_idea = agrarian_ideas_3
+		}
+		change_key = { lhs = Modi_StatePropertyFlat value = 100 }
+	}
+	if = {
+		limit = {
+			has_idea = administrative_ideas_4
+		}
+		change_key = { lhs = Modi_StatePropertyFlat value = 100 }
+	}
+	if = {
+		limit = {
+			has_idea = aristocracy_ideas_7
+		}
+		change_key = { lhs = Modi_StatePropertyFlat value = 100 }
+	}
+	trigger_switch = {
+		on_trigger = government_rank
+		6 = { change_key = { lhs = Modi_StatePropertyFlat value = 475 } }
+		5 = { change_key = { lhs = Modi_StatePropertyFlat value = 400 } }
+		4 = { change_key = { lhs = Modi_StatePropertyFlat value = 325 } }
+		3 = { change_key = { lhs = Modi_StatePropertyFlat value = 250 } }
+		2 = { change_key = { lhs = Modi_StatePropertyFlat value = 175 } }
+		1 = { change_key = { lhs = Modi_StatePropertyFlat value = 100 } }
+	}
+	if = {
+		limit = {
+			Privilege_Has = { Privilege=BUStructure Lvl=2 }
+		}
+		change_key = { lhs = Modi_StatePropertyFlat value = 100 }
+	}
+	else_if = {
+		limit = {
+			Privilege_Has = { Privilege=BUStructure Lvl=3 }
+		}
+		change_key = { lhs = Modi_StatePropertyFlat value = 200 }
+	}
+	
+	## Centralization effect, higher centralization reduces state capacity at 100 -> -50%
+	export_to_key = { lhs = Modi_Tmp0 value = trigger_value:absolutism }
+	multiply_key = { lhs = Modi_Tmp0 value = 0.005 }
+	subtract_key = { lhs = Modi_StatePropertyPerc which = Modi_Tmp0 }
+	
+    ### technology impact, higher technology increase state capacity 
+	if = {
+		limit = {
+			adm_tech = 70
+		}
+		change_key = { lhs = Modi_StatePropertyPerc value = 0.7 }
+	}
+	else_if = {
+		limit = {
+			adm_tech = 65
+		}
+		change_key = { lhs = Modi_StatePropertyPerc value = 0.65 }
+	}	
+	else_if = {
+		limit = {
+			adm_tech = 60
+		}
+		change_key = { lhs = Modi_StatePropertyPerc value = 0.6 }
+	}
+	else_if = {
+		limit = {
+			adm_tech = 55
+		}
+		change_key = { lhs = Modi_StatePropertyPerc value = 0.55 }
+	}
+	else_if = {
+		limit = {
+			adm_tech = 50
+		}
+		change_key = { lhs = Modi_StatePropertyPerc value = 0.5 }
+	}
+	else_if = {
+		limit = {
+			adm_tech = 45
+		}
+		change_key = { lhs = Modi_StatePropertyPerc value = 0.45 }
+	}
+	else_if = {
+		limit = {
+			adm_tech = 40
+		}
+		change_key = { lhs = Modi_StatePropertyPerc value = 0.4 }
+	}
+	else_if = {
+		limit = {
+			adm_tech = 35
+		}
+		change_key = { lhs = Modi_StatePropertyPerc value = 0.35 }
+	}
+	else_if = {
+		limit = {
+			adm_tech = 30
+		}
+		change_key = { lhs = Modi_StatePropertyPerc value = 0.3 }
+	}
+	else_if = {
+		limit = {
+			adm_tech = 25
+		}
+		change_key = { lhs = Modi_StatePropertyPerc value = 0.25 }
+	}
+	else_if = {
+		limit = {
+			adm_tech = 20
+		}
+		change_key = { lhs = Modi_StatePropertyPerc value = 0.2 }
+	}
+	else_if = {
+		limit = {
+			adm_tech = 15
+		}
+		change_key = { lhs = Modi_StatePropertyPerc value = 0.15 }
+	}
+	else_if = {
+		limit = {
+			adm_tech = 10
+		}
+		change_key = { lhs = Modi_StatePropertyPerc value = 0.1 }
+	}
+	else_if = {
+		limit = {
+			adm_tech = 5
+		}
+		change_key = { lhs = Modi_StatePropertyPerc value = 0.05 }
+	}
+	if = {
+		limit = { 
+			government = monarchy
+		}
+		subtract_key = { lhs = Modi_StatePropertyAgriculture value = 0.2 }
+	}
+	if = {
+		limit = { 
+			government = tribal
+		}
+		subtract_key = { lhs = Modi_StatePropertyAgriculture value = 0.2 }
+	}
+	if = {
+		limit = { 
+			government = republic
+		}
+		subtract_key = { lhs = Modi_StatePropertyIndustrial value = 0.2 }
+	}
+	if = {
+		limit = { 
+			government = theocracy
+		}
+		subtract_key = { lhs = Modi_StatePropertyAcademic value = 0.2 }
+	}	
+	# Processing Monopoly
+	if = {
+		limit = {
+			Privilege_Has = { Privilege=NOProcessing Lvl=1 }
+		}
+		subtract_key = { lhs = Modi_StatePropertyExtraction value = 0.05 }
+		change_key = { lhs = Modi_StatePropertyFlat value = 25 }
+	}
+	else_if = {
+		limit = {
+			Privilege_Has = { Privilege=NOProcessing Lvl=2 }
+		}
+		subtract_key = { lhs = Modi_StatePropertyExtraction value = 0.1 }
+		change_key = { lhs = Modi_StatePropertyFlat value = 50 }
+	}
+	# Game Monopoly
+	if = {
+		limit = {
+			Privilege_Has = { Privilege=NOGame Lvl=1 }
+		}
+		subtract_key = { lhs = Modi_StatePropertyForestry value = 0.05 }
+		subtract_key = { lhs = Modi_StatePropertyFishery value = 0.05 }
+		change_key = { lhs = Modi_StatePropertyFlat value = 25 }
+	}
+	else_if = {
+		limit = {
+			Privilege_Has = { Privilege=NOGame Lvl=2 }
+		}
+		subtract_key = { lhs = Modi_StatePropertyForestry value = 0.1 }
+		subtract_key = { lhs = Modi_StatePropertyFishery value = 0.1 }
+		change_key = { lhs = Modi_StatePropertyFlat value = 50 }
+	}
+	# Forestry Monopoly
+	if = {
+		limit = {
+			Privilege_Has = { Privilege=NOForestry Lvl=1 }
+		}
+		subtract_key = { lhs = Modi_StatePropertyForestry value = 0.05 }
+		change_key = { lhs = Modi_StatePropertyFlat value = 25 }
+	}
+	else_if = {
+		limit = {
+			Privilege_Has = { Privilege=NOForestry Lvl=2 }
+		}
+		subtract_key = { lhs = Modi_StatePropertyForestry value = 0.1 }
+		change_key = { lhs = Modi_StatePropertyFlat value = 50 }
+	}
+	# Rural Governance
+	if = {
+		limit = {
+			Rights_NOGov1Has = yes
+		}
+		subtract_key = { lhs = Modi_StatePropertyExtraction value = 0.25 }
+		change_key = { lhs = Modi_StatePropertyFlat value = 75 }
+	}
+	else_if = {
+		limit = {
+			Rights_NOGov2Has = yes
+		}
+		subtract_key = { lhs = Modi_StatePropertyExtraction value = 0.225 }
+		change_key = { lhs = Modi_StatePropertyFlat value = 50 }
+	}
+	else_if = {
+		limit = {
+			Rights_NOGov3Has = yes
+		}
+		subtract_key = { lhs = Modi_StatePropertyExtraction value = 0.2 }
+		change_key = { lhs = Modi_StatePropertyFlat value = 25 }
+	}
+	else_if = {
+		limit = {
+			Rights_NOGov4Has = yes
+		}
+		subtract_key = { lhs = Modi_StatePropertyExtraction value = 0.175 }
+	}
+	else_if = {
+		limit = {
+			Rights_NOGov5Has = yes
+		}
+		subtract_key = { lhs = Modi_StatePropertyExtraction value = 0.15 }
+	}
+}
 
 Modi_EliteLoyaltyCountry = {
 	set_key = { lhs = Modi_NOLoyalty value = 1 }
@@ -5308,6 +5704,12 @@ Modi_EliteLoyaltyCountry = {
 			Privilege_Has = { Privilege=NOHierarchy Lvl=3 }
 		}
 		change_key = { lhs = Modi_NOLoyaltyChangeSpeed value = 1 }
+	}
+	if = {
+		limit = {
+			has_idea = aristocracy_ideas_5 
+		}
+		change_key = { lhs = Modi_NOLoyaltyChange value = 0.3 }
 	}
 	trigger_switch = {
 		on_trigger = has_country_modifier
@@ -5652,6 +6054,12 @@ Modi_ElitePowerCountry = {
 		}
 		subtract_key = { lhs = Modi_NOPowerChange value = 0.5 }
 	}
+	if = {
+		limit = {
+			has_country_modifier = permanent_tax_system
+		}
+		change_key = { lhs = Modi_NOPowerChange value = -0.15 }
+	}
 	# Urban Governance
 	if = {
 		limit = {
@@ -5882,6 +6290,12 @@ Modi_ElitePowerCountry = {
 				change_key = { lhs = Modi_StateReach value = 0.5 }
 			}
 		}
+		if = {
+			limit = {
+				has_country_modifier = permanent_tax_system
+			}
+			change_key = { lhs = Modi_StateReach value = 0.15 }
+		}
 		# National Ideas
 		if = {
 			limit = {
@@ -5906,6 +6320,12 @@ Modi_ElitePowerCountry = {
 				has_idea = roman_ideas_2
 			}
 			change_key = { lhs = Modi_StateReach value = 0.1 }
+		}
+		if = {
+			limit = {
+				has_idea = burmese_ideas_5
+			}
+			change_key = { lhs = Modi_StateReach value = 0.05 }
 		}
 
 		
@@ -5987,13 +6407,17 @@ Modi_ElitePowerCountry = {
 			change_key = { lhs = Modi_SFFreedomChange which = Modi_Tmp0 }
 			set_key = { lhs = Modi_Tmp0 value = 0 }
 		}
-		trigger_switch = {
-			on_trigger = has_idea 
-			industrial_ideas_1 = {
-				change_key = { lhs = Modi_SFFreedomChange value = 1 }
+		if = {
+			limit = {
+				has_idea = industrial_ideas_1
 			}
-			industrial_ideas_2 = { # ignore
+			change_key = { lhs = Modi_SFFreedomChange value = 1 }
+		}
+		if = {
+			limit = {
+				has_idea = aristocracy_ideas_1
 			}
+			change_key = { lhs = Modi_SFFreedomChange value = -0.2 }
 		}
 		trigger_switch = {
 			on_trigger = has_idea
@@ -7056,12 +7480,6 @@ Modi_TreatmentCountry = {
 	}
 	if = {
 		limit = {
-			has_idea = aristocracy_ideas_2
-		}
-		change_key = { lhs = Modi_TreatHierarchy value = 1 }
-	}
-	if = {
-		limit = {
 			has_idea = culture_ideas_1
 		}
 		change_key = { lhs = Modi_TreatDiversions value = 1 }
@@ -7107,6 +7525,13 @@ Modi_TreatmentCountry = {
 			has_idea = humanist_ideas_1
 		}
 		change_key = { lhs = Modi_TreatWelfare value = 1 }
+	}
+	if = {
+		limit = {
+			has_idea = aristocracy_ideas_7 
+		}
+		change_key = { lhs = Modi_TreatHierarchy value = 1 }
+		change_key = { lhs = Modi_WeightHierarchy value = 0.1 }
 	}
 	if = {
         limit = { OR = { western_christian = yes eastern_christian = yes } is_key_equal = { lhs = aspect_19 value = 2 } }
@@ -7487,6 +7912,20 @@ Modi_TreatmentCountry = {
 		khmer_ideas_6 = {
 			change_key = { lhs = Modi_TreatDiversions value = 0.5 }
 			change_key = { lhs = Modi_TreatWelfare value = 0.75 }
+		}
+		mapuche_ideas_2 = {
+			change_key = { lhs = Modi_WeightHierarchy value = -0.30 }
+			change_key = { lhs = Modi_TreatHierarchy value = -1 }
+			if = {
+				limit = {
+					has_idea = mapuche_ideas_4
+				}
+				change_key = { lhs = Modi_WeightSpirituality value = 0.50 }
+			}
+		}
+		burmese_ideas_2 = {
+			change_key = { lhs = Modi_TreatHierarchy value = 0.50 }
+			change_key = { lhs = Modi_TreatConsultation value = 0.50 }
 		}
 	}
 	if = {
@@ -8046,12 +8485,6 @@ Modi_FactionsCountry = {
 		}
 		subtract_key = { lhs = Modi_FCBGInertia value = 0.33 }
 	}
-	if = {
-		limit = {
-			has_idea = aristocracy_ideas_6
-		}
-		change_key = { lhs = Modi_FCNOBU value = 0.05 }
-	}
 }
 
 Modi_TaxCountry = {
@@ -8279,15 +8712,10 @@ Modi_TaxCountry = {
 	}
 	if = {
 		limit = {
-			has_idea = aristocracy_ideas_1
+			has_idea = aristocracy_ideas_3
 		}
-		subtract_key = { lhs = Modi_LevyNobleCost value = 0.05 }
-		if = {
-			limit = {
-				has_idea = aristocracy_ideas_3
-			}
-			subtract_key = { lhs = Modi_TaxNobleCost value = 0.05 }
-		}
+		subtract_key = { lhs = Modi_LevyNobleCost value = 0.1 }
+		subtract_key = { lhs = Modi_TaxNobleCost value = 0.1 }
 	}
 	if = {
 		limit = {
@@ -8331,6 +8759,12 @@ Modi_TaxCountry = {
 			has_country_modifier = papal_sanction_for_church_taxes
 		}
 		subtract_key = { lhs = Modi_TaxMana value = 0.05 }
+	}
+	if = {
+		limit = {
+			has_reform = Pol_Provincial1
+		}
+		subtract_key = { lhs = Modi_TaxMana value = 0.10 }	
 	}
 	if = {
 		limit = {
@@ -8960,35 +9394,71 @@ Pol_SetGovernmentHelper2 = {
 }
 ### CALLED EVERY MONTH, SET THESE FLAGS IF NEEDED and not already set by script
 Modi_UpdatePopWealth = {
+	# Update Popnumbers and Wealth numbers monthly if something changes between yearly ticks
 	if = {
 		limit = {
-			has_province_flag = POP_ChangedPop
+			OR = {
+				has_province_flag = POP_ChangedPop
+				has_province_flag = POP_ChangedWealth
+			}
 		}
-		clr_province_flag = POP_ChangedPop
 
-		POP_SetClass = yes
+		if = {
+			limit = {
+				has_province_flag = POP_ChangedPop
+			}
+			
+			clr_province_flag = POP_ChangedPop
 
-		TN_GetWealthPC = { class = SF }
-		TN_GetWealthPC = { class = NM }
-		TN_GetWealthPC = { class = RE }
-		TN_GetWealthPC = { class = NO }
-		TN_GetWealthPC = { class = BG }
-		TN_GetWealthPC = { class = CL }
-	}
-	if = {
-		limit = {
-			has_province_flag = POP_ChangedWealth
+			POP_SetClass = yes # Update pops
+
 		}
-		clr_province_flag = POP_ChangedWealth
+		if = {
+			limit = {
+				has_province_flag = POP_ChangedWealth
+			}
+			clr_province_flag = POP_ChangedWealth
 
-		POP_SumWealth = yes
+			POP_SumWealth = yes # Update wealth
+		}
 
-		TN_GetWealthPC = { class = SF }
-		TN_GetWealthPC = { class = NM }
-		TN_GetWealthPC = { class = RE }
-		TN_GetWealthPC = { class = NO }
-		TN_GetWealthPC = { class = BG }
-		TN_GetWealthPC = { class = CL }
+		# If either change Wealth PC needs recalcultion. The below does calc per class and sum per aggrgate
+		TN_GetWealthPC = { class = SF aggr = Rural aggr_glob = Total }
+		TN_GetWealthPC = { class = NM aggr = Rural aggr_glob = Total }
+		TN_GetWealthPC = { class = RE aggr = Urban aggr_glob = Total }
+		TN_GetWealthPC = { class = NO aggr = Notables aggr_glob = Total }
+		TN_GetWealthPC = { class = BG aggr = Notables aggr_glob = Total }
+		TN_GetWealthPC = { class = CL aggr = Notables aggr_glob = Total }
+
+		# The below calculates the division for the aggregations of Wealth PC
+		if = {
+			limit = {
+				check_key = { lhs = Class_Rural value = 0.001 }
+			}
+			divide_key = { lhs = Class_RuralWealthPC    which = Class_Rural }
+			multiply_key = { lhs = Class_RuralWealthPC  value = 0.001 } #Divide by 1000 to get per capita
+		}
+		if = {
+			limit = {
+				check_key = { lhs = Class_Urban value = 0.001 }
+			}
+			divide_key = { lhs = Class_UrbanWealthPC    which = Class_Urban }
+			multiply_key = { lhs = Class_UrbanWealthPC  value = 0.001 } #Divide by 1000 to get per capita
+		}
+		if = {
+			limit = {
+				check_key = { lhs = Class_Notables value = 0.001 }
+			}
+			divide_key = { lhs = Class_NotablesWealthPC   which = Class_Notables }
+			multiply_key = { lhs = Class_NotablesWealthPC value = 0.001 } #Divide by 1000 to get per capita
+		}
+		if = {
+			limit = {
+				check_key = { lhs = Class_Total value = 0.001 }
+			}
+			divide_key = { lhs = Class_TotalWealthPC    which = Class_Total }
+			multiply_key = { lhs = Class_TotalWealthPC  value = 0.001 } #Divide by 1000 to get per capita
+		}
 	}
 }
 

@@ -90,16 +90,30 @@ Prod_GetWorkerCL = {
     }
 }
 
+# This effectively get as close to 100% of the original pop as litrati labor
 Prod_GetWorkerLT = {
-    Prod_GetWorkerHelper = {
-        class = RE
-        return = $return$
-		rate = 2.5
-		val = 1.2
+	if = {
+        limit = {
+            check_key = { lhs = LT_Total value = 0.001 }
+        }
+		set_key = { lhs = $return$ which = LT_Total }
+
+		multiply_key = { lhs = $return$ value = 0.46} # Deflate
+		multiply_key = { lhs = $return$ which = Modi_LTLabor }
+		multiply_key = { lhs = $return$ which = Modi_Labor }
+		if = {
+			limit = {
+				NOT = { check_key = { lhs = $return$ value = 0 } }
+			}
+			set_key = { lhs = $return$ value = 0 }
+		}
+        set_key = { lhs = WK_LT which = $return$ } #save
     }
-    multiply_key = { lhs = $return$ which = LT_Ratio }
-	multiply_key = { lhs = $return$ value = 0.01 }
-    set_key = { lhs = WK_LT which = $return$ }
+    else = {
+        set_key = { lhs = $return$ value = 0 }
+        set_key = { lhs = WK_LT value = 0 }
+    }
+	
 }
 
 
@@ -616,8 +630,8 @@ Prod_AddProduceHelper16 = {  # Rare Metals
 	else = {
 		set_key = { lhs = Prod_S$slot$SplyB25 value = 0.12 }
 	}
-    set_key = { lhs = Prod_S$slot$SplyB9 value = 0.8 } # here this isnt exotics but bullion * a fixed balance multiplier
-	set_key = { lhs = Prod_S$slot$DmndB10 value = 0.4 }
+    set_key = { lhs = Prod_S$slot$SplyB9 value = 1.5 } # here this isnt exotics but bullion * a fixed balance multiplier
+	set_key = { lhs = Prod_S$slot$DmndB10 value = 0.6 }
     set_key = { lhs = Prod_S$slot$DmndBR value = 0.5 }
     set_key = { lhs = Prod_S$slot$DmndBExtraction value = 1 }
     set_province_flag = Industry_16Present
@@ -628,9 +642,9 @@ Prod_AddProduceHelper17 = {  # Gold
 	set_province_flag = Building_ExtractionHas
     set_province_flag = Prod_S$slot$DmndBExtraction
 
-    set_key = { lhs = Prod_S$slot$SplyB9 value = 1.2 } # here this isnt exotics but bullion * a fixed balance multiplier
-    set_key = { lhs = Prod_S$slot$SplyB25 value = 0.06 }
-	set_key = { lhs = Prod_S$slot$DmndB10 value = 0.4 }
+    set_key = { lhs = Prod_S$slot$SplyB9 value = 2.5 } # here this isnt exotics but bullion * a fixed balance multiplier
+    set_key = { lhs = Prod_S$slot$SplyB25 value = 0.05 }
+	set_key = { lhs = Prod_S$slot$DmndB10 value = 0.8 }
     set_key = { lhs = Prod_S$slot$DmndBR value = 0.5 }
     set_key = { lhs = Prod_S$slot$DmndBExtraction value = 1 }
     set_province_flag = Industry_17Present
@@ -641,9 +655,9 @@ Prod_AddProduceHelper18 = {  # Silver
 	set_province_flag = Building_ExtractionHas
     set_province_flag = Prod_S$slot$DmndBExtraction
 
-    set_key = { lhs = Prod_S$slot$SplyB9 value = 0.8 } # here this isnt exotics but bullion * a fixed balance multiplier
+    set_key = { lhs = Prod_S$slot$SplyB9 value = 1.8 } # here this isnt exotics but bullion * a fixed balance multiplier
 	set_key = { lhs = Prod_S$slot$SplyB25 value = 0.04 }
-	set_key = { lhs = Prod_S$slot$DmndB10 value = 0.4 }
+	set_key = { lhs = Prod_S$slot$DmndB10 value = 0.8 }
     set_key = { lhs = Prod_S$slot$DmndBR value = 0.5 }
     set_key = { lhs = Prod_S$slot$DmndBExtraction value = 1 }
     set_province_flag = Industry_18Present
@@ -1220,7 +1234,7 @@ Prod_AddProduceHelper40 = { # Steel
     set_key = { lhs = Prod_S$slot$SplyB25 value = 0.04 }
     set_key = { lhs = Prod_S$slot$DmndB5 value = 1.8 }
     set_key = { lhs = Prod_S$slot$DmndB6 value = 0.60 }
-    set_key = { lhs = Prod_S$slot$DmndB24 value = 0.4 }
+    set_key = { lhs = Prod_S$slot$DmndB24 value = 0.3 }
     set_key = { lhs = Prod_S$slot$DmndBUL value = 1 }
     set_key = { lhs = Prod_S$slot$DmndBIndustrial value = 1 }
     set_province_flag = Industry_40Present

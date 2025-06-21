@@ -3854,6 +3854,8 @@
 ### General
 - New river sections for Benue, Senegal and Gambia river
 - Changes to Niger river section
+- Add introduction for England and France to explain HYW starting positions
+- Remove vassalize cb for England in the mission as this would render treaties broken
 - More Cossack flavor
 - More Reformation-related flavor
 - Revive half-ported succession crisis disaster
@@ -3918,3 +3920,68 @@
 
 ### League Wars
 - Make the requirements for a permanent peace in the League Wars more stringent: 75% in the 1st war, 66% in the 2nd war, 50% in the 3rd war. If no vote reaches this threshold after 3 wars, the Empire will enact a Permanent Religious Peace. 
+
+### Balance
+- Increase base autonomy gain for provinces, increase autonomy reduction from CE
+- Add some benefits to Regional Leadership Governance Reforms
+- Rework CE from regional Capitals and how everything is calculated, should be more efficient now
+- Increase wealth generation from gold/silver/precious metals and trade by roughly 100%
+- Buffed dues, land taxes and poll taxes and fixed bugs to make those taxes more viable.
+- add religious autonomy from minorities
+
+### Institutions
+- Casual Literacy has new requirements
+- Global Trade has new requirements
+
+### Ideas
+- Add Burmese ideas, courtesy of Avalon
+
+### Misc
+- Add minor urban populations to Marburg and Fulda
+- More special mapmodes in the bottom right UI
+- Fixing various UIs, like National Income
+- Buff to Tributes (Tax paid from Tribes to state)
+- Removing forgotten delicacies taxes in burgher flows
+- Fix Tax information in decisions
+	- it no longer lies to you, nobody noticed that Feudal Dues and Rent Dues were swapped??
+- Civil Examinations 2: Irregular Examinations changed requirements
+
+
+### New Feature State Property
+- State Property has now a capacity
+- State Property capacity is derived from Reforms, Priviliges and Ideas
+- If state goes over capacity, additional provincial corruption is accrued
+- if state is over cap, events will happen where estates will try to buy property from state
+- expropriations from estates will no longer lead to state property, instead the property goes from estate to commoner
+- commoner expropriations are disabled
+- increased state share from investments when far below state property capacity, scaling
+- decreased to almost no shares from investments when far below state property capacity, scaling
+- New background event that transfers properties of size 3, 5, 10 to commoners when above 100, 150, 200% state property capacity. 
+
+
+### Flavour
+- England and France has an introduction each to explain how HYW works
+- Remove English restore union mission CB for France
+- Province allocation to England fix
+- Jeanne can now either show up in 1430 or when France is in dire situation
+- Add Jeanne's capture when England wins against her leading an army
+- Add subsequent trial for Jeanne
+- Jean II will be released when France wins the initial war
+- Jean II can also die now in captivity thus depriving England's biggest advantage
+- Free County of Burgundy will become Flemish lesser union when Phillip Rouvres dies
+- Remove England cores when they lost HYW
+- Triggering Peasant revolt end events with a set timer
+- Noble appeasement event will get triggered for France when they win HYW, removing one of their buffed up reform for now
+- Remove Alencon cores on Normandy
+
+### Map Setup
+- Change west Himalayan wastelands to allow colour infill
+- Move some pixels from Khotan to Kashgar, update province data
+- Change east Taklamakan wastelands to allow colour infill, remove wasteland 3845
+- Move province 2575 from Arabia to Red Sea node, update province groups
+- Remove innacurate AHS core on 1099 Soqotra
+- Rename duplicate Mbunda to Cuanza
+- Rename 4122 Bujadur to Abu Khatar, add dynamic province names
+- Remove stray pixels of Celtic Sea on Leinster coast
+- Correct native icon for 3229 Perapohjola
+- Connect East Mediterranean sea tile to Cyprus

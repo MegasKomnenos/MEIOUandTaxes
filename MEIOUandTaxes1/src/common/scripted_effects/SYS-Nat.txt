@@ -349,6 +349,7 @@ Nat_SumStats = {
 		set_key = { lhs = TaxD_REPropertyBU value = 0 }
 		set_key = { lhs = TaxD_REChattel value = 0 }
 		set_key = { lhs = TaxD_REInheritance value = 0 }
+		set_key = { lhs = TaxD_RERents value = 0 }
 		set_key = { lhs = TaxD_NO value = 0 }
 		set_key = { lhs = TaxD_NO_BU value = 0 }
 		set_key = { lhs = TaxD_NOFees value = 0 }
@@ -379,6 +380,8 @@ Nat_SumStats = {
 		set_key = { lhs = TaxD_BGPropertyBU value = 0 }
 		set_key = { lhs = TaxD_BGChattel value = 0 }
 		set_key = { lhs = TaxD_BGInheritance value = 0 }
+		set_key = { lhs = TaxD_BGRents value = 0 }
+		set_key = { lhs = Tariff_Income value = 0 }		
 		set_key = { lhs = TaxD_CL value = 0 }
 		set_key = { lhs = TaxD_CL_BU value = 0 }
 		set_key = { lhs = TaxD_CLFees value = 0 }
@@ -401,6 +404,7 @@ Nat_SumStats = {
 		set_key = { lhs = TaxD_BUProperty value = 0 }
 		set_key = { lhs = TaxD_Fees value = 0 }
 		set_key = { lhs = TaxD_FeesAdmin value = 0 }
+		set_key = { lhs = TaxD_Rents value = 0 }
 		set_key = { lhs = TaxD_Obligations value = 0 }
 		set_key = { lhs = TaxD_Poll value = 0 }
 		set_key = { lhs = TaxD_Land value = 0 }
@@ -455,6 +459,7 @@ Nat_SumStats = {
 		set_key = { lhs = Crpt_LA value = 0 }
 		set_key = { lhs = Crpt_Wages value = 0 }
 		set_key = { lhs = Crpt_Other value = 0 }
+		set_key = { lhs = Crpt_StateP value = 0 }
 
 		### National Military Display
 		set_key = { lhs = Mil_Maint1 value = 0 }
@@ -693,6 +698,16 @@ Nat_SumStats = {
 	set_key = { lhs = Concern_HierarchyTreatR value = 0 }
 	set_key = { lhs = Concern_UrbsTreatR value = 0 }
 	set_key = { lhs = Concern_CountrysideTreatR value = 0 }
+	set_key = { lhs = StatePropertyTotal value = 0 }
+	set_key = { lhs = PropertyTotal value = 0 }
+	set_key = { lhs = StatePropertyTotalModified value = 0 }
+	set_key = { lhs = StatePropertyAgriculture value = 0 }
+	set_key = { lhs = StatePropertyForestry value = 0 }
+	set_key = { lhs = StatePropertyExtraction value = 0 }
+	set_key = { lhs = StatePropertyFishery value = 0 }
+	set_key = { lhs = StatePropertyIndustrial value = 0 }
+	set_key = { lhs = StatePropertyCommercial value = 0 }
+	set_key = { lhs = StatePropertyAcademic value = 0 }
 
 	every_owned_province = {
 		set_key = { lhs = Tmp_1 value = 0 }
@@ -724,6 +739,9 @@ Nat_SumStats = {
 			change_key = { lhs = NO_IncomeSpend which = PREV }
 			change_key = { lhs = BG_IncomeSpend which = PREV }
 			change_key = { lhs = CL_IncomeSpend which = PREV }
+			change_key = { lhs = StatePropertyTotal which = PREV }
+			change_key = { lhs = PropertyTotal which = PREV }
+			change_key = { lhs = StatePropertyTotalModified which = PREV }
 			if = {
 				limit = {
 					ai = no # Player Only Variables
@@ -757,6 +775,7 @@ Nat_SumStats = {
 				change_key = { lhs = TaxD_REPropertyBU which = PREV }
 				change_key = { lhs = TaxD_REChattel which = PREV }
 				change_key = { lhs = TaxD_REInheritance which = PREV }
+				change_key = { lhs = TaxD_RERents which = PREV }
 				change_key = { lhs = TaxD_NO which = PREV }
 				change_key = { lhs = TaxD_NO_BU which = PREV }
 				change_key = { lhs = TaxD_NOFees which = PREV }
@@ -787,6 +806,7 @@ Nat_SumStats = {
 				change_key = { lhs = TaxD_BGPropertyBU which = PREV }
 				change_key = { lhs = TaxD_BGChattel which = PREV }
 				change_key = { lhs = TaxD_BGInheritance which = PREV }
+				change_key = { lhs = TaxD_BGRents which = PREV }
 				change_key = { lhs = TaxD_CL which = PREV }
 				change_key = { lhs = TaxD_CL_BU which = PREV }
 				change_key = { lhs = TaxD_CLFees which = PREV }
@@ -807,6 +827,7 @@ Nat_SumStats = {
 				change_key = { lhs = TaxD_Industry which = PREV }
 				change_key = { lhs = TaxD_Fees which = PREV }
 				change_key = { lhs = TaxD_FeesAdmin which = PREV }
+				change_key = { lhs = TaxD_Rents which = PREV }
 				change_key = { lhs = TaxD_Obligations which = PREV }
 				change_key = { lhs = TaxD_Poll which = PREV }
 				change_key = { lhs = TaxD_Land which = PREV }
@@ -874,6 +895,7 @@ Nat_SumStats = {
 				change_key = { lhs = BG_MPCur which = PREV }
 				change_key = { lhs = BG_MPBuildSize which = PREV }
 				change_key = { lhs = BG_MPDisband which = PREV }
+				change_key = { lhs = Tariff_Income which = PREV }				
 				change_key = { lhs = TR_SpendMP which = PREV }
 				change_key = { lhs = TR_SpendMPMaint which = PREV }
 				change_key = { lhs = TR_SpendMPBuild which = PREV }
@@ -900,6 +922,7 @@ Nat_SumStats = {
 				change_key = { lhs = TR_MPCur which = PREV }
 				change_key = { lhs = TR_MPBuildSize which = PREV }
 				change_key = { lhs = TR_MPDisband which = PREV }
+				change_key = { lhs = TaxD_ObligationsTR which = PREV }
 				change_key = { lhs = BU_SpendMP which = PREV }
 				change_key = { lhs = BU_SpendMPMaint which = PREV }
 				change_key = { lhs = BU_SpendMPBuild which = PREV }
@@ -1043,6 +1066,14 @@ Nat_SumStats = {
 				change_key = { lhs = CL_SpendInfra which = PREV }
 				change_key = { lhs = TaxD_CL_Flow which = PREV }
 
+				change_key = { lhs = StatePropertyAgriculture which = PREV }
+				change_key = { lhs = StatePropertyForestry which = PREV }
+				change_key = { lhs = StatePropertyExtraction which = PREV }
+				change_key = { lhs = StatePropertyFishery which = PREV }
+				change_key = { lhs = StatePropertyIndustrial which = PREV }
+				change_key = { lhs = StatePropertyCommercial which = PREV }
+				change_key = { lhs = StatePropertyAcademic which = PREV }
+
 
 			}
 		}
@@ -1088,6 +1119,7 @@ Nat_SumStats = {
 			Nat_SumAdminHelper1 = { inp=Crpt_Wages overflow=no }
 			Nat_SumAdminHelper1 = { inp=Crpt_LA overflow=no }
 			Nat_SumAdminHelper1 = { inp=Crpt_Other overflow=no }
+			Nat_SumAdminHelper1 = { inp=Crpt_StateP overflow=yes }
 		}
 
 		Nat_SumAdminHelper1 = { inp=Concern_WelfareTreatR overflow=yes }
@@ -1150,6 +1182,7 @@ Nat_SumStats = {
 			Nat_SumAdminHelper2 = { inp=Crpt_BG overflow=yes }
 			Nat_SumAdminHelper2 = { inp=Crpt_CL overflow=yes }
 			Nat_SumAdminHelper2 = { inp=Crpt_State overflow=yes }
+			Nat_SumAdminHelper2 = { inp=Crpt_StateP overflow=yes }
 			divide_key = { lhs = Crpt_LA which = Dev_Total }
 			divide_key = { lhs = Crpt_Wages which = Dev_Total }
 			divide_key = { lhs = Crpt_Other which = Dev_Total }
@@ -1206,6 +1239,7 @@ Nat_SumStats = {
 			set_key = { lhs = Crpt_LA value = 0 }
 			set_key = { lhs = Crpt_Wages value = 0 }
 			set_key = { lhs = Crpt_Other value = 0 }
+			set_key = { lhs = Crpt_StateP value = 0 }
 		}
 	}
 	set_key = { lhs = Tmp_1 value = 0 }
