@@ -2555,9 +2555,11 @@ Modi_ProdProvince = {
 	#Golden Bulls 
 	if = {
 		limit = {
-			has_country_flag = has_effects_of_GB2
 			religion = catholic
-			is_papal_controller = yes
+			owner = {
+				has_country_flag = has_effects_of_GB2
+				is_papal_controller = yes
+			}
 		}
 		change_key = {
 			lhs = Modi_KnowledgeOutput value = 0.15
