@@ -4019,9 +4019,10 @@ on_change_revolution_target = {
 # this = curia controller (enactor of the bull)
 on_golden_bull_enacted = {
 	set_country_flag = enacted_golden_bull
-	country_event = {
-		id = DG_GoldenBulls.001
-		days = 1
+	AAA = {
+		country_event = {
+			id = DG_GoldenBulls.001
+		}
 	}
 }
 
