@@ -4022,6 +4022,7 @@ on_golden_bull_enacted = {
 	AAA = {
 		country_event = {
 			id = DG_GoldenBulls.001
+			days = 1
 		}
 	}
 }
