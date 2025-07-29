@@ -89,7 +89,6 @@ has_golden_bull9 = {
 }
 
 has_golden_bull10 = {
-	religion = catholic
 	PAP = {
 		has_global_modifier_value = {
 			which = FC_golden_bull_id_influence
