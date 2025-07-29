@@ -403,6 +403,8 @@ namespace = DG_Zoroastrian
 namespace = DG_Hellenic
 namespace = dg_papacy
 namespace = dg_succession
+namespace = DG_GoldenBulls
+
 
 #1530
 namespace = italy_fifteenthirty
